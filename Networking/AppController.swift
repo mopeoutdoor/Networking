@@ -89,5 +89,5 @@ class AppController {
         return elephantsInSection
     }
     
-    //func printElephants
+   
 }
