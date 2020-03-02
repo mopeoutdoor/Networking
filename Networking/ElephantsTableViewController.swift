@@ -8,62 +8,43 @@
 
 import UIKit
 
-class ElephantsTableViewController: UITableViewController, AppControllerProtocol {
+class ElephantsTableViewController: UITableViewController {
     var elephants = [Elephant]()
     private var elephantsBySpecies = [String: [Elephant]]()
     private var sectionById = [Int: String]()
     private var elephantsInSection = [Int: Elephant]()
     private let jsonUrlElephants = "https://elephant-api.herokuapp.com/elephants"
-    //var someElephant: Elephant!
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(false)
-//        
-//    }
+    let activityIndicatorView = UIActivityIndicatorView(style: .gray)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let appController = AppController.shared
-//        appController.delegate = self
+        tableView.backgroundView = activityIndicatorView
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.startAnimating()
+        
         fetchElephants()
-        
-        
-//        AppController.shared.fetchElephants()
-//        print("Elephant species \(AppController.shared.fetchElephantsBySpecies())")
+    
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        //return 1
-        speciesDic()
+        //speciesDic()
         return sectionById.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return elephants.count
         let speciesName = sectionById[section]!
         return elephantsBySpecies[speciesName]!.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        //cell.textLabel?.text = elephants[indexPath.row].name
-        let speciesName = sectionById[indexPath.section]!
-        let elephantDic = elephantsBySpecies[speciesName]!
-        let someElephant = elephantDic[indexPath.row]
-        cell.textLabel?.text = someElephant.name ?? ""
-        
-        DispatchQueue.global().async {
-            guard let stringURL = someElephant.image else { return }
-            guard let imageURL = URL(string: stringURL) else { return }
-            guard let imageData = try? Data(contentsOf: imageURL) else { return }
-            
-            DispatchQueue.main.async {
-                cell.imageView?.image = UIImage(data: imageData)
-            }
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ElephantCell
+        let someSpecies = sectionById[indexPath.section]!
+        elephantsDic(speciesName: someSpecies)
+        let someElephant = elephantsInSection[indexPath.row]!
+        cell.configure(with: someElephant)
         
         return cell
     }
@@ -72,17 +53,11 @@ class ElephantsTableViewController: UITableViewController, AppControllerProtocol
         return sectionById[section]
     }
     
-    func didUpdate(results: [Elephant]?) {
-        print("Start didUpdate")
-        if let act = results {
-            DispatchQueue.main.async {
-                //print(act)
-                self.elephants = act
-                self.tableView.reloadData()
-            }
-        } else {
-            print("No results from fetchElephants")
-        }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let someSpecies = sectionById[indexPath.section]!
+        elephantsDic(speciesName: someSpecies)
+        let someElephant = elephantsInSection[indexPath.row]!
+        performSegue(withIdentifier: "ToDetail", sender: someElephant)
     }
     
     func fetchElephants() {
@@ -97,7 +72,10 @@ class ElephantsTableViewController: UITableViewController, AppControllerProtocol
                 self.elephants = try decoder.decode([Elephant].self, from: data)
                 
                 DispatchQueue.main.async {
+                    self.fetchElephantsBySpecies()
+                    self.speciesDic()
                     self.tableView.reloadData()
+                    self.activityIndicatorView.stopAnimating()
                 }
                 
             } catch let error {
@@ -118,7 +96,7 @@ class ElephantsTableViewController: UITableViewController, AppControllerProtocol
     
     // Создаем словарь из ключей по разделам
     func speciesDic() {
-        fetchElephantsBySpecies()
+//        fetchElephantsBySpecies()
         var index = 0
         let species = elephantsBySpecies.map { $0.0 } .sorted(by: < )
         for item in species {
@@ -128,8 +106,8 @@ class ElephantsTableViewController: UITableViewController, AppControllerProtocol
     }
     
     // Создаем словарь слонов по конкретному виду
-    func elephantsDic(seciesName: String) {
-        if let someElephants = elephantsBySpecies[seciesName] {
+    func elephantsDic(speciesName: String) {
+        if let someElephants = elephantsBySpecies[speciesName] {
             let sortedsomeElephants = someElephants.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
             var index = 0
             for item in sortedsomeElephants {
@@ -138,14 +116,14 @@ class ElephantsTableViewController: UITableViewController, AppControllerProtocol
             }
         }
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let destinationVC = segue.destination as! DetailViewController
+        destinationVC.elephant = sender as? Elephant
     }
-    */
+    
 
 }

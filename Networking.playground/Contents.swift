@@ -41,9 +41,12 @@ class AppController {
                 self.elephants = try decoder.decode([Elephant].self, from: data)
                 //self.courses = try decoder.decode([Course].self, from: data)
                 
-//                DispatchQueue.main.async {
-//                    print(self.elephants)
-//                }
+                DispatchQueue.main.async {
+                    //self.fetchElephantsBySpecies()
+                    //self.speciesDic()
+                    print(self.elephants)
+                    //print(self.elephantsDic(speciesName: "Asian"))
+                }
                 
                 //self.delegate?.didUpdate()
             } catch let error {
@@ -57,7 +60,37 @@ class AppController {
         }
 
     }
+    // Создаем словарь слонов по ключу species (вид)
+    func fetchElephantsBySpecies() {
+        for item in elephants {
+            if let species = item.species {
+                elephantsBySpecies[species, default: []].append(item)
+            }
+        }
+    }
     
+    // Создаем словарь из ключей по разделам
+    func speciesDic() {
+        //        fetchElephantsBySpecies()
+        var index = 0
+        let species = elephantsBySpecies.map { $0.0 } .sorted(by: < )
+        for item in species {
+            sectionById[index] = item
+            index += 1
+        }
+    }
+    
+    // Создаем словарь слонов по конкретному виду
+    func elephantsDic(speciesName: String) {
+        if let someElephants = elephantsBySpecies[speciesName] {
+            let sortedsomeElephants = someElephants.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
+            var index = 0
+            for item in sortedsomeElephants {
+                elephantsInSection[index] = item
+                index += 1
+            }
+        }
+    }
     func printElephants() {
         fetchElephants()
         print(elephants)
