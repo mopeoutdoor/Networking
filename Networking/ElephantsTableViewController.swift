@@ -30,7 +30,6 @@ class ElephantsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        //speciesDic()
         return sectionById.count
     }
 
@@ -96,7 +95,6 @@ class ElephantsTableViewController: UITableViewController {
     
     // Создаем словарь из ключей по разделам
     func speciesDic() {
-//        fetchElephantsBySpecies()
         var index = 0
         let species = elephantsBySpecies.map { $0.0 } .sorted(by: < )
         for item in species {
@@ -119,7 +117,6 @@ class ElephantsTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! DetailViewController
         destinationVC.elephant = sender as? Elephant
