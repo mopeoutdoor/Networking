@@ -13,7 +13,6 @@ class ElephantsTableViewController: UITableViewController {
     private var elephantsBySpecies = [String: [Elephant]]()
     private var sectionById = [Int: String]()
     private var elephantsInSection = [Int: Elephant]()
-    private let jsonUrlElephants = "https://elephant-api.herokuapp.com/elephants"
     let activityIndicatorView = UIActivityIndicatorView(style: .gray)
     
     override func viewDidLoad() {
@@ -23,8 +22,12 @@ class ElephantsTableViewController: UITableViewController {
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
         
-        fetchElephants()
-    
+        JsonData.shared.fetchElephants { (jsonData) in
+            AppController.shared.elephants = jsonData
+            self.elephantsBySpecies = AppController.shared.fetchElephantsBySpecies()
+            self.sectionById = AppController.shared.speciesDic()
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -41,8 +44,7 @@ class ElephantsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ElephantCell
         let someSpecies = sectionById[indexPath.section]!
-        elephantsDic(speciesName: someSpecies)
-        let someElephant = elephantsInSection[indexPath.row]!
+        let someElephant = AppController.shared.elephantsDic(speciesName: someSpecies)[indexPath.row]!
         cell.configure(with: someElephant)
         
         return cell
@@ -54,65 +56,8 @@ class ElephantsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let someSpecies = sectionById[indexPath.section]!
-        elephantsDic(speciesName: someSpecies)
-        let someElephant = elephantsInSection[indexPath.row]!
+        let someElephant = AppController.shared.elephantsDic(speciesName: someSpecies)[indexPath.row]!
         performSegue(withIdentifier: "ToDetail", sender: someElephant)
-    }
-    
-    func fetchElephants() {
-        
-        guard let url = URL(string: jsonUrlElephants) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            guard let data = data else { return }
-            
-            do {
-                let decoder = JSONDecoder()
-                self.elephants = try decoder.decode([Elephant].self, from: data)
-                
-                DispatchQueue.main.async {
-                    self.fetchElephantsBySpecies()
-                    self.speciesDic()
-                    self.tableView.reloadData()
-                    self.activityIndicatorView.stopAnimating()
-                }
-                
-            } catch let error {
-                print(error)
-            }
-            
-            }.resume()
-    }
-    
-    // Создаем словарь слонов по ключу species (вид)
-    func fetchElephantsBySpecies() {
-        for item in elephants {
-            if let species = item.species {
-                elephantsBySpecies[species, default: []].append(item)
-            }
-        }
-    }
-    
-    // Создаем словарь из ключей по разделам
-    func speciesDic() {
-        var index = 0
-        let species = elephantsBySpecies.map { $0.0 } .sorted(by: < )
-        for item in species {
-            sectionById[index] = item
-            index += 1
-        }
-    }
-    
-    // Создаем словарь слонов по конкретному виду
-    func elephantsDic(speciesName: String) {
-        if let someElephants = elephantsBySpecies[speciesName] {
-            let sortedsomeElephants = someElephants.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
-            var index = 0
-            for item in sortedsomeElephants {
-                elephantsInSection[index] = item
-                index += 1
-            }
-        }
     }
     
     // MARK: - Navigation

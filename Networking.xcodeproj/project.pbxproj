@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6349E0DC240F9B0200A272BD /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6349E0DB240F9B0200A272BD /* AppController.swift */; };
 		636C6A46240ABCC600552DB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C6A45240ABCC600552DB8 /* AppDelegate.swift */; };
 		636C6A48240ABCC600552DB8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C6A47240ABCC600552DB8 /* DetailViewController.swift */; };
 		636C6A4B240ABCC600552DB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 636C6A49240ABCC600552DB8 /* Main.storyboard */; };
@@ -14,10 +15,14 @@
 		636C6A50240ABCCB00552DB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 636C6A4E240ABCCB00552DB8 /* LaunchScreen.storyboard */; };
 		636C6A58240ABEBA00552DB8 /* Elephant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C6A57240ABEBA00552DB8 /* Elephant.swift */; };
 		636C6A5C240B992F00552DB8 /* ElephantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C6A5B240B992F00552DB8 /* ElephantsTableViewController.swift */; };
+		63C1A7562410FE7900AF1C60 /* JsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C1A7552410FE7900AF1C60 /* JsonData.swift */; };
 		63F3F8E7240C8179003F5478 /* ElephantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3F8E6240C8179003F5478 /* ElephantCell.swift */; };
+		D33FC1259B33B06DF6111AD0 /* Pods_Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF97D1888BD519433283F6 /* Pods_Networking.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		350181AAAB27A7D908D66DBD /* Pods-Networking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.release.xcconfig"; path = "Target Support Files/Pods-Networking/Pods-Networking.release.xcconfig"; sourceTree = "<group>"; };
+		6349E0DB240F9B0200A272BD /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		636C6A42240ABCC600552DB8 /* Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		636C6A45240ABCC600552DB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		636C6A47240ABCC600552DB8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -27,7 +32,10 @@
 		636C6A51240ABCCB00552DB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		636C6A57240ABEBA00552DB8 /* Elephant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elephant.swift; sourceTree = "<group>"; };
 		636C6A5B240B992F00552DB8 /* ElephantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElephantsTableViewController.swift; sourceTree = "<group>"; };
+		63C1A7552410FE7900AF1C60 /* JsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
 		63F3F8E6240C8179003F5478 /* ElephantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElephantCell.swift; sourceTree = "<group>"; };
+		941B8B5B018F5BD4689DC853 /* Pods-Networking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.debug.xcconfig"; path = "Target Support Files/Pods-Networking/Pods-Networking.debug.xcconfig"; sourceTree = "<group>"; };
+		ADEF97D1888BD519433283F6 /* Pods_Networking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Networking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D33FC1259B33B06DF6111AD0 /* Pods_Networking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +55,8 @@
 			children = (
 				636C6A44240ABCC600552DB8 /* Networking */,
 				636C6A43240ABCC600552DB8 /* Products */,
+				9F39F9B122104F76DD019D2D /* Pods */,
+				DB15DE8FE2E8088C8FFDF4EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +74,8 @@
 				636C6A45240ABCC600552DB8 /* AppDelegate.swift */,
 				636C6A47240ABCC600552DB8 /* DetailViewController.swift */,
 				636C6A49240ABCC600552DB8 /* Main.storyboard */,
+				6349E0DB240F9B0200A272BD /* AppController.swift */,
+				63C1A7552410FE7900AF1C60 /* JsonData.swift */,
 				63F3F8E6240C8179003F5478 /* ElephantCell.swift */,
 				636C6A5B240B992F00552DB8 /* ElephantsTableViewController.swift */,
 				636C6A57240ABEBA00552DB8 /* Elephant.swift */,
@@ -73,6 +86,23 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		9F39F9B122104F76DD019D2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				941B8B5B018F5BD4689DC853 /* Pods-Networking.debug.xcconfig */,
+				350181AAAB27A7D908D66DBD /* Pods-Networking.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DB15DE8FE2E8088C8FFDF4EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ADEF97D1888BD519433283F6 /* Pods_Networking.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 636C6A54240ABCCB00552DB8 /* Build configuration list for PBXNativeTarget "Networking" */;
 			buildPhases = (
+				1A63CA89892B9150C3433721 /* [CP] Check Pods Manifest.lock */,
 				636C6A3E240ABCC600552DB8 /* Sources */,
 				636C6A3F240ABCC600552DB8 /* Frameworks */,
 				636C6A40240ABCC600552DB8 /* Resources */,
+				7388AC29775A458BE02DE3B7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,16 +171,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1A63CA89892B9150C3433721 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Networking-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7388AC29775A458BE02DE3B7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Networking/Pods-Networking-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Networking/Pods-Networking-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Networking/Pods-Networking-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		636C6A3E240ABCC600552DB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				63F3F8E7240C8179003F5478 /* ElephantCell.swift in Sources */,
+				63C1A7562410FE7900AF1C60 /* JsonData.swift in Sources */,
 				636C6A48240ABCC600552DB8 /* DetailViewController.swift in Sources */,
 				636C6A46240ABCC600552DB8 /* AppDelegate.swift in Sources */,
 				636C6A58240ABEBA00552DB8 /* Elephant.swift in Sources */,
 				636C6A5C240B992F00552DB8 /* ElephantsTableViewController.swift in Sources */,
+				6349E0DC240F9B0200A272BD /* AppController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +368,7 @@
 		};
 		636C6A55240ABCCB00552DB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 941B8B5B018F5BD4689DC853 /* Pods-Networking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -310,6 +387,7 @@
 		};
 		636C6A56240ABCCB00552DB8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 350181AAAB27A7D908D66DBD /* Pods-Networking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

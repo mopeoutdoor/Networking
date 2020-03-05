@@ -7,17 +7,28 @@
 //
 
 struct Elephant: Codable {
-    let _id: String?
-    let index: Int?
     let name: String?
     let species: String?
     let sex: String?
-    let fictional: String?
     let dob: String?
     let dod: String?
     let wikilink: String?
     let image: String?
     let note: String?
+    
+    init(elephant: [String: Any]) {
+        name = elephant["name"] as? String
+        species = elephant["species"] as? String
+        sex = elephant["sex"] as? String
+        dob = elephant["dob"] as? String
+        dod = elephant["dod"] as? String
+        wikilink = elephant["wikilink"] as? String
+        image = elephant["image"] as? String
+        note = elephant["note"] as? String
+    }
+    
+    static func getElephant(from jsonData: Any) -> [Elephant]? {
+        guard let elephantsDic = jsonData as? Array<[String:Any]> else { return nil}
+        return elephantsDic.compactMap { Elephant.init(elephant: $0) }
+    }
 }
-
-//{"_id":"5cf1d0db3cfbe0fcbb6c4c93","index":1,"name":"Abul-Abbas","affiliation":"Charlemagne","species":"Asian","sex":"Male","fictional":"false","dob":"Unavailable","dod":"810","wikilink":"https://en.wikipedia.org/wiki/Abul-Abbas","image":"https://elephant-api.herokuapp.com/pictures/001.jpg","note":"An elephant given to Carolingian emperor Charlemagne by the Abbasid caliph Harun al-Rashid."}
