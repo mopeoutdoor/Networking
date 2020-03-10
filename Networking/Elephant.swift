@@ -6,7 +6,7 @@
 //  Copyright © 2020 Mikhail Scherbina. All rights reserved.
 //
 
-struct Elephant: Codable {
+struct Elephant: Codable, Equatable {
     let name: String?
     let species: String?
     let sex: String?
@@ -30,5 +30,10 @@ struct Elephant: Codable {
     static func getElephant(from jsonData: Any) -> [Elephant]? {
         guard let elephantsDic = jsonData as? Array<[String:Any]> else { return nil}
         return elephantsDic.compactMap { Elephant.init(elephant: $0) }
+    }
+    
+    public static func == (lhs: Elephant, rhs: Elephant) -> Bool {
+        if lhs.name == rhs.name { return true }
+        return false
     }
 }

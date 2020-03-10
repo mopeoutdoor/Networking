@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		633CA0F624164CEF00AFA640 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633CA0F524164CEF00AFA640 /* ImageView.swift */; };
+		633CA0F824166A7300AFA640 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633CA0F724166A7300AFA640 /* NetworkManager.swift */; };
+		633CA0FA2416D5F000AFA640 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633CA0F92416D5F000AFA640 /* DataManager.swift */; };
 		6349E0DC240F9B0200A272BD /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6349E0DB240F9B0200A272BD /* AppController.swift */; };
 		636C6A46240ABCC600552DB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C6A45240ABCC600552DB8 /* AppDelegate.swift */; };
 		636C6A48240ABCC600552DB8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C6A47240ABCC600552DB8 /* DetailViewController.swift */; };
@@ -22,6 +25,9 @@
 
 /* Begin PBXFileReference section */
 		350181AAAB27A7D908D66DBD /* Pods-Networking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Networking.release.xcconfig"; path = "Target Support Files/Pods-Networking/Pods-Networking.release.xcconfig"; sourceTree = "<group>"; };
+		633CA0F524164CEF00AFA640 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		633CA0F724166A7300AFA640 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		633CA0F92416D5F000AFA640 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		6349E0DB240F9B0200A272BD /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		636C6A42240ABCC600552DB8 /* Networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		636C6A45240ABCC600552DB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,12 +78,15 @@
 			isa = PBXGroup;
 			children = (
 				636C6A45240ABCC600552DB8 /* AppDelegate.swift */,
+				633CA0F524164CEF00AFA640 /* ImageView.swift */,
+				633CA0F724166A7300AFA640 /* NetworkManager.swift */,
 				636C6A47240ABCC600552DB8 /* DetailViewController.swift */,
 				636C6A49240ABCC600552DB8 /* Main.storyboard */,
 				6349E0DB240F9B0200A272BD /* AppController.swift */,
 				63C1A7552410FE7900AF1C60 /* JsonData.swift */,
 				63F3F8E6240C8179003F5478 /* ElephantCell.swift */,
 				636C6A5B240B992F00552DB8 /* ElephantsTableViewController.swift */,
+				633CA0F92416D5F000AFA640 /* DataManager.swift */,
 				636C6A57240ABEBA00552DB8 /* Elephant.swift */,
 				636C6A4C240ABCCB00552DB8 /* Assets.xcassets */,
 				636C6A4E240ABCCB00552DB8 /* LaunchScreen.storyboard */,
@@ -218,6 +227,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633CA0F824166A7300AFA640 /* NetworkManager.swift in Sources */,
+				633CA0FA2416D5F000AFA640 /* DataManager.swift in Sources */,
+				633CA0F624164CEF00AFA640 /* ImageView.swift in Sources */,
 				63F3F8E7240C8179003F5478 /* ElephantCell.swift in Sources */,
 				63C1A7562410FE7900AF1C60 /* JsonData.swift in Sources */,
 				636C6A48240ABCC600552DB8 /* DetailViewController.swift in Sources */,

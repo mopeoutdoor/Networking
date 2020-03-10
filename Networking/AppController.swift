@@ -16,6 +16,7 @@ class AppController {
     
     // Создаем словарь слонов по ключу species (вид)
     func fetchElephantsBySpecies() -> [String: [Elephant]] {
+        elephantsBySpecies = [:]
         for item in elephants {
             if let species = item.species {
                 elephantsBySpecies[species, default: []].append(item)
@@ -48,6 +49,12 @@ class AppController {
             }
         }
         return elephantsInSection
+    }
+    
+    func removeElephant(elephant: Elephant) {
+        if let index = elephants.firstIndex(where: { $0 == elephant}) {
+            elephants.remove(at: index)
+        }
     }
     
 }

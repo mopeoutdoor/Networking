@@ -9,7 +9,7 @@
 import UIKit
 
 class ElephantsTableViewController: UITableViewController {
-    var elephants = [Elephant]()
+    //var elephants = [Elephant]()
     private var elephantsBySpecies = [String: [Elephant]]()
     private var sectionById = [Int: String]()
     private var elephantsInSection = [Int: Elephant]()
@@ -22,12 +22,24 @@ class ElephantsTableViewController: UITableViewController {
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
         
-        JsonData.shared.fetchElephants { (jsonData) in
-            AppController.shared.elephants = jsonData
-            self.elephantsBySpecies = AppController.shared.fetchElephantsBySpecies()
-            self.sectionById = AppController.shared.speciesDic()
-            self.tableView.reloadData()
+        let restoreElephants = DataManager.shared.restoreElephants()
+        
+        if restoreElephants.isEmpty {
+            JsonData.shared.fetchElephants { (jsonData) in
+                AppController.shared.elephants = jsonData
+                self.elephantsBySpecies = AppController.shared.fetchElephantsBySpecies()
+                self.sectionById = AppController.shared.speciesDic()
+                print("Load elephants from network")
+                self.tableView.reloadData()
+            }
+        } else {
+            print("Load elephants from UserDefaults")
+            AppController.shared.elephants = restoreElephants
+            elephantsBySpecies = AppController.shared.fetchElephantsBySpecies()
+            sectionById = AppController.shared.speciesDic()
+            tableView.reloadData()
         }
+        
     }
 
     // MARK: - Table view data source
@@ -60,6 +72,23 @@ class ElephantsTableViewController: UITableViewController {
         performSegue(withIdentifier: "ToDetail", sender: someElephant)
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let someSpecies = sectionById[indexPath.section]!
+            let someElephant = AppController.shared.elephantsDic(speciesName: someSpecies)[indexPath.row]!
+            AppController.shared.removeElephant(elephant: someElephant)
+            elephantsBySpecies = AppController.shared.fetchElephantsBySpecies()
+            sectionById = AppController.shared.speciesDic()
+            
+            if elephantsBySpecies[someSpecies] == nil {
+                let indexSet = IndexSet(arrayLiteral: indexPath.section)
+                tableView.deleteSections(indexSet, with: .left)
+            } else {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            
+        }
+    }
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,5 +96,8 @@ class ElephantsTableViewController: UITableViewController {
         destinationVC.elephant = sender as? Elephant
     }
     
-
+    @IBAction func saveButton(_ sender: UIBarButtonItem) {
+        DataManager.shared.saveElephants()
+    }
+    
 }
